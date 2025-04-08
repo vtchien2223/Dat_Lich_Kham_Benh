@@ -1,0 +1,154 @@
+@model Nhom4_QLBA_API.Models.RolePermissionDto
+
+@{
+    ViewData["Title"] = "Chỉnh sửa quyền hạn";
+    Layout = "_Layout";
+}
+
+<div class="container-fluid px-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Chỉnh sửa quyền hạn</h1>
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Quay lại
+        </a>
+    </div>
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Thông tin quyền hạn</h6>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit" method="post">
+                <input type="hidden" asp-for="RoleId" />
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Quản lý người dùng</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" asp-for="CanManageDoctors" id="manageDoctors">
+                                    <label class="form-check-label" for="manageDoctors">
+                                        <i class="fas fa-user-md me-2"></i>Quản lý bác sĩ
+                                    </label>
+                                </div>
+
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" asp-for="CanManagePatients" id="managePatients">
+                                    <label class="form-check-label" for="managePatients">
+                                        <i class="fas fa-user-injured me-2"></i>Quản lý bệnh nhân
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Quản lý lịch hẹn</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" asp-for="CanManageAppointments" id="manageAppointments">
+                                    <label class="form-check-label" for="manageAppointments">
+                                        <i class="fas fa-calendar-check me-2"></i>Quản lý lịch hẹn
+                                    </label>
+                                </div>
+
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" asp-for="CanManageAppointmentDetails" id="manageAppointmentDetails">
+                                    <label class="form-check-label" for="manageAppointmentDetails">
+                                        <i class="fas fa-calendar-alt me-2"></i>Quản lý chi tiết lịch hẹn
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Quản lý dịch vụ</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" asp-for="CanManageServices" id="manageServices">
+                                    <label class="form-check-label" for="manageServices">
+                                        <i class="fas fa-procedures me-2"></i>Quản lý dịch vụ
+                                    </label>
+                                </div>
+
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" asp-for="CanManageSpecialty" id="manageSpecialty">
+                                    <label class="form-check-label" for="manageSpecialty">
+                                        <i class="fas fa-stethoscope me-2"></i>Quản lý chuyên khoa
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Quản lý nội dung</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" asp-for="CanManagePosts" id="managePosts">
+                                    <label class="form-check-label" for="managePosts">
+                                        <i class="fas fa-newspaper me-2"></i>Quản lý bài viết
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end mt-4">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save me-2"></i>Lưu thay đổi
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Add any additional JavaScript here if needed
+        });
+    </script>
+}
+
+<style>
+    .form-check-input:checked {
+        background-color: #4e73df;
+        border-color: #4e73df;
+    }
+    .card {
+        border: none;
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    }
+    .card-header {
+        background-color: #f8f9fc;
+        border-bottom: 1px solid #e3e6f0;
+    }
+    .form-check-input {
+        width: 3em;
+        height: 1.5em;
+    }
+    .form-check-label {
+        font-size: 1rem;
+        padding-left: 0.5em;
+    }
+</style> 
